@@ -5,9 +5,6 @@ from sqlalchemy.ext.mutable import MutableList
 from flask_sqlalchemy import SQLAlchemy
 import secrets
 
-import pymysql
-pymysql.install_as_MySQLdb()
-
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex(16)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://python123:Python896%40@python123.mysql.pythonanywhere-services.com/python123$users_db'
