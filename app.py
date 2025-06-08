@@ -7,7 +7,7 @@ import secrets
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex(16)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+mysqlconnector://root:Radhey896%40@localhost/users_db'
+app.config["SQLALCHEMY_DATABASE_URI"] = ''
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
