@@ -1,0 +1,212 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    max-height: 300px;
+    padding: 2rem 0; 
+    color: white;
+    background-color: rgb(0, 136, 255);
+}
+
+nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+nav h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 1rem;
+}
+
+nav ul{
+    list-style: none;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+}
+
+nav ul a {
+    padding: 0.5rem;
+    text-decoration: none;
+    color: white;
+}
+
+nav ul a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 0.25rem;
+}
+
+main {
+    background-color: white;
+    width: 60%;
+    min-height: 60%;
+    margin: 1rem;
+    overflow: auto;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+main .container {
+    width: 100%;
+}
+
+main form, main view-tasks {
+    width: 100%;
+}
+
+main form .create-task {
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.25rem;
+}
+main form .create-task input {
+    flex-basis: 70%;
+    padding: 0.25rem;
+    font-size: 1.2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+main form .create-task input[type="submit"] {
+    flex-basis: 30%;
+    background-color: rgb(0, 136, 255);
+    border-radius: 0.3rem;
+    color: white;
+}
+
+main form .create-task input[type="submit"]:hover {
+    outline: auto;
+    outline-offset: 2px;
+    outline-color: black;
+}
+
+main .container .view-tasks {
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+main .container .view-tasks .task {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+
+main .container .view-tasks .task .task-name {
+    width: 70%;
+    padding: 0.25rem;
+    font-size: 1.2rem;
+}
+
+
+main .container .view-tasks .task .btns {
+    width: 25%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
+
+main .container .view-tasks .task .btns input {
+    width: 50%;
+    margin: 0.25rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    font-size: 1rem;
+}
+
+main .container .view-tasks .task .btns input:hover {
+    outline: auto;
+    outline-offset: 2px;
+}
+
+@media screen and (max-width:768px) {
+    main form .create-task {
+        flex-direction: column;
+    }
+
+    main form .create-task input {
+        width: 100%;
+    }
+
+    main .container .view-tasks .task {
+        flex-direction: column;
+    }
+
+    main .container .view-tasks .task .task-name {
+        width: 100%;
+    }
+
+    main .container .view-tasks .task .btns {
+        width: 100%;
+    }
+    
+}
+
+@media screen and (max-width: 250px) {
+    main .container .view-tasks .task .btns input {
+        font-size: 0.6rem;
+    }
+
+    main form .create-task input[type="submit"] {
+        font-size: 0.6rem;
+    }
+}
+
+footer {
+    background-color: rgb(0, 136, 255);
+    width: 100%;
+    padding: 1rem;
+    max-height: 100px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.delete-task {
+    display: none;
+}
+
+.complete-task {
+    text-decoration: line-through;
+}

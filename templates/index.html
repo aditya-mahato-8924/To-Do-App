@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'indexStyle.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>My To-Do App</h1>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <div class="create-task">
+                    {{ form.enter_task }}
+                    {{ form.submit() }}
+                </div>
+            </form>
+
+            <div class="view-tasks">
+                {% if tasks %}
+                {% for task in tasks %}
+                <div class="task">
+                    <div class="task-name" id="{{ task.task_id }}">
+                        {{ task.name }}
+                    </div>
+                    <div class="btns">
+                        <input type="submit" value="Done" id="done">
+                        <input type="submit" value="Delete" id="delete">
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div style="font-size: 1rem; color:rgba(0, 0, 0, 0.5);"><i>No task created!</i></div>
+                {% endif %}
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <p>2025 &copy; copyright Flask App</p>
+        </div>
+    </footer>
+
+</body>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</html>
