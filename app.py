@@ -1,6 +1,6 @@
-from flask import Flask, render_template, redirect, session, url_for
+from flask import Flask, render_template, redirect, session, url_for, flash
 from forms import LoginForm, Task
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.ext.mutable import MutableList
 from flask_sqlalchemy import SQLAlchemy
 import secrets
@@ -71,17 +71,24 @@ def login():
             password = form.password.data
 
             # check whether the user exists in database or not
-            db_username = User.query.filter_by(username=username).first()
+            db_user = User.query.filter_by(username=username).first()
 
             # add user details in the database
-            if db_username == None:
+            if db_user == None:
                 user = User(username=username, password=generate_password_hash(password))
                 db.session.add(user)
                 db.session.commit()
-            
-            # create a session with user_id and username
-            session['username'] = username
-            session['user_id'] = User.query.filter_by(username=username).first().id
+                # create the session of the new user
+                session['user_id'] = user.id
+                session['username'] = username
+            else:
+                # user already exists
+                if check_password_hash(db_user.password, password):
+                    session['user_id'] = db_user.id
+                    session['username'] = username
+                else:
+                    flash('Username already exists!')
+                    return redirect(url_for('login'))
 
             # redirect the user to the homepage
             return redirect(url_for("home"))
