@@ -3,12 +3,18 @@ from forms import LoginForm, Task
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.ext.mutable import MutableList
 from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, session
+from flask_session import Session
 import secrets
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex(16)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+mysqlconnector://python123:Python896%40@python123.mysql.pythonanywhere-services.com/python123$todo_users'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_FILE_DIR'] = './flask_session/'
+
+Session(app)  # Initialize session handler
 
 db = SQLAlchemy(app)
 task_id = 1
